@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The limits of AI video – Bates Digital</title>
+<meta name="description" content="Five common problems with AI video, how we handle each one, and when a traditional shoot is the better choice.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Courier+Prime:wght@400;700&family=Hanken+Grotesk:wght@500;700;800&display=swap" rel="stylesheet">
+<style>
+  :root { --navy: #0F1A3A; --ink: #0E1530; --muted: #3F4966; --soft: #B7C0DA; --bg: #F2F4F7; --accent: #00E676; --teal: #35C6D8; }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--bg); color: var(--ink); font-family: 'Courier Prime', 'Courier New', Courier, monospace; font-size: 17px; line-height: 1.55; }
+  a { color: inherit; }
+  h1, h2, h3, .brand { font-family: 'Hanken Grotesk', 'Segoe UI', Helvetica, sans-serif; }
+  a:focus-visible { outline: 3px solid var(--teal); outline-offset: 3px; }
+  .wrap { max-width: 1240px; margin: 0 auto; }
+  .pad { padding-left: clamp(20px, 5vw, 72px); padding-right: clamp(20px, 5vw, 72px); }
+
+  .top { background: var(--navy); color: #FFFFFF; }
+  .top header { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 16px; padding: 24px 0; }
+  .brand { display: flex; align-items: center; gap: 12px; min-height: 44px; font-weight: 800; font-size: 25px; line-height: 1; letter-spacing: -0.02em; text-decoration: none; }
+  .brand::before { content: ""; width: 16px; height: 16px; background: var(--accent); }
+  .btn { display: inline-flex; align-items: center; justify-content: center; gap: 8px; min-height: 48px; padding: 0 22px; border-radius: 4px; font-weight: 700; text-decoration: none; }
+  .btn:hover { filter: brightness(0.93); }
+  .btn-back { border: 1.5px solid #FFFFFF; color: #FFFFFF; }
+  .btn-back:hover { background: #FFFFFF; color: var(--navy); filter: none; }
+  .btn-accent { background: var(--accent); color: var(--ink); }
+
+  .intro { padding: clamp(24px, 4vw, 48px) 0 clamp(56px, 7vw, 96px); display: flex; flex-direction: column; gap: 20px; }
+  .eyebrow { font-size: 15px; font-weight: 500; color: var(--soft); }
+  h1 { margin: 0; font-weight: 800; font-size: clamp(36px, 5vw, 66px); line-height: 1.04; letter-spacing: -0.025em; max-width: 18ch; }
+  .intro p { margin: 0; max-width: 60ch; font-size: clamp(18px, 1.6vw, 21px); color: #DCE2F2; }
+  .jump { display: flex; flex-wrap: wrap; gap: 8px 12px; margin: 8px 0 0; padding: 0; list-style: none; }
+  .jump a { display: inline-flex; align-items: center; gap: 8px; min-height: 44px; padding: 0 14px; border: 1px solid rgba(255,255,255,0.3); border-radius: 4px; font-size: 15px; text-decoration: none; }
+  .jump a:hover { border-color: #FFFFFF; }
+  .jump b { color: var(--teal); }
+
+  h2 { margin: 0 0 16px; font-weight: 800; font-size: clamp(28px, 3.4vw, 44px); line-height: 1.1; letter-spacing: -0.02em; }
+  h3 { margin: 0 0 6px; font-size: 18px; font-weight: 700; }
+
+  .problems { list-style: none; margin: 0; padding: 0; }
+  .problem { display: flex; flex-wrap: wrap; gap: 24px 48px; padding: clamp(40px, 6vw, 72px) 0; border-bottom: 1px solid #C9D0DC; scroll-margin-top: 16px; }
+  .problem:last-child { border-bottom: 0; }
+  .num { flex: 0 0 auto; width: 72px; font-family: 'Hanken Grotesk', 'Segoe UI', Helvetica, sans-serif; font-weight: 800; font-size: 56px; line-height: 1; color: var(--navy); }
+  .body { flex: 1 1 520px; min-width: 0; }
+  .body > p { margin: 0 0 24px; max-width: 64ch; }
+  .split { display: flex; flex-wrap: wrap; gap: 20px 32px; }
+  .split > div { flex: 1 1 260px; min-width: 0; border-top: 2px solid var(--navy); padding-top: 14px; }
+  .split > div.shoot { border-top-color: var(--teal); }
+  .split p { margin: 0; color: var(--muted); font-size: 16px; }
+
+  .decide { background: #E4E8EF; margin-top: clamp(24px, 4vw, 48px); padding-top: clamp(56px, 7vw, 96px); padding-bottom: clamp(56px, 7vw, 96px); }
+  .decide .lede { margin: 0 0 32px; max-width: 60ch; color: var(--muted); }
+  .cards { display: flex; flex-wrap: wrap; gap: 20px; }
+  .card { flex: 1 1 300px; min-width: 0; background: #FFFFFF; border-radius: 6px; padding: clamp(20px, 3vw, 32px); }
+  .card h3 { font-size: 22px; margin-bottom: 14px; }
+  .card ul { margin: 0; padding-left: 20px; color: var(--muted); font-size: 16px; }
+  .card li + li { margin-top: 8px; }
+  .tag { display: inline-block; margin-bottom: 12px; padding: 2px 10px; border-radius: 3px; font-size: 13px; font-weight: 700; }
+  .tag.ai { background: var(--accent); }
+  .tag.shoot { background: var(--teal); }
+  .tag.mix { background: var(--navy); color: #FFFFFF; }
+
+  .cta { background: var(--navy); color: #FFFFFF; padding-top: clamp(48px, 7vw, 96px); padding-bottom: clamp(48px, 7vw, 96px); }
+  .cta .wrap { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 24px; }
+  .cta h2 { margin: 0 0 8px; }
+  .cta p { margin: 0; color: #DCE2F2; max-width: 52ch; }
+  .cta .actions { display: flex; flex-wrap: wrap; gap: 14px; }
+  footer { background: var(--navy); color: var(--soft); border-top: 1px solid rgba(255,255,255,0.14); padding-top: 28px; padding-bottom: 28px; font-size: 15px; }
+</style>
+</head>
+<body>
+
+<div class="top pad">
+  <div class="wrap">
+    <header>
+      <a class="brand" href="index.html">Bates Digital</a>
+      <a class="btn btn-back" href="index.html#ai-video"><span aria-hidden="true">←</span> Back to main page</a>
+    </header>
+    <div class="intro">
+      <div class="eyebrow">AI video · Know the limits first</div>
+      <h1>Five common problems with AI video</h1>
+      <p>AI video can save a shoot, a location and a lot of time. It also fails in predictable ways. Here is what goes wrong, what we do about it, and when filming for real is the better buy.</p>
+      <ul class="jump" aria-label="The five problems">
+        <li><a href="#consistency"><b>1</b> Consistency</a></li>
+        <li><a href="#detail"><b>2</b> Text, logos and detail</a></li>
+        <li><a href="#control"><b>3</b> Precise control</a></li>
+        <li><a href="#rights"><b>4</b> Rights and disclosure</a></li>
+        <li><a href="#people"><b>5</b> Real people and trust</a></li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="pad">
+    <ol class="problems wrap">
+      <li class="problem" id="consistency">
+        <div class="num" aria-hidden="true">1</div>
+        <div class="body">
+          <h2>Things change between shots</h2>
+          <p>A face, an outfit, a product or a room can look slightly different from one clip to the next. In a single shot nobody notices. Across a 60-second spot, it reads as a different person or a different product.</p>
+          <div class="split">
+            <div><h3>How we handle it</h3><p>We lock reference images for every character and product before generating, keep scenes short, and fix drift in the edit and grade.</p></div>
+            <div class="shoot"><h3>Shoot instead when</h3><p>The same person or product has to appear on screen for most of the video.</p></div>
+          </div>
+        </div>
+      </li>
+
+      <li class="problem" id="detail">
+        <div class="num" aria-hidden="true">2</div>
+        <div class="body">
+          <h2>Text, logos and fine detail break</h2>
+          <p>Generated video still garbles lettering, packaging, screens, hands and small product details. A logo that is almost right is worse than no logo.</p>
+          <div class="split">
+            <div><h3>How we handle it</h3><p>We never let AI draw your brand. Logos, text, UI and packaging are added afterwards as real graphics, so they are exact in every frame.</p></div>
+            <div class="shoot"><h3>Shoot instead when</h3><p>The video is about how a physical product looks, works or is held.</p></div>
+          </div>
+        </div>
+      </li>
+
+      <li class="problem" id="control">
+        <div class="num" aria-hidden="true">3</div>
+        <div class="body">
+          <h2>Exact direction is hard to get</h2>
+          <p>A specific camera move, a precise action or timing that lands on a beat can take many attempts, and some shots never come out right. Clips are also short, so longer moments have to be built from pieces.</p>
+          <div class="split">
+            <div><h3>How we handle it</h3><p>We storyboard first, agree which shots must be exact, and plan the edit around what AI does well. Revision rounds are agreed up front.</p></div>
+            <div class="shoot"><h3>Shoot instead when</h3><p>You need a choreographed action, a demonstration or a long unbroken take.</p></div>
+          </div>
+        </div>
+      </li>
+
+      <li class="problem" id="rights">
+        <div class="num" aria-hidden="true">4</div>
+        <div class="body">
+          <h2>Rights and disclosure are still unsettled</h2>
+          <p>Copyright in AI output is not as clear as it is for filmed footage. Many platforms ask you to label realistic AI content, and some broadcasters, clients and industries restrict it.</p>
+          <div class="split">
+            <div><h3>How we handle it</h3><p>We use commercially licensed tools, never imitate a real person, brand or artist, and tell you up front where labels or restrictions apply.</p></div>
+            <div class="shoot"><h3>Shoot instead when</h3><p>You need clear ownership of every frame, or the video is going to broadcast or a regulated industry.</p></div>
+          </div>
+        </div>
+      </li>
+
+      <li class="problem" id="people">
+        <div class="num" aria-hidden="true">5</div>
+        <div class="body">
+          <h2>Real people and real trust</h2>
+          <p>Generated faces and voices can look and sound slightly off, especially when speaking with emotion. When the point of a video is that people are real, like a testimonial or a founder's story, audiences notice and trust drops.</p>
+          <div class="split">
+            <div><h3>How we handle it</h3><p>We keep generated people for background, illustration and concept work, and never present AI people as real customers or staff.</p></div>
+            <div class="shoot"><h3>Shoot instead when</h3><p>The video depends on a real person: testimonials, interviews, leadership messages and recruitment.</p></div>
+          </div>
+        </div>
+      </li>
+    </ol>
+  </div>
+
+  <section class="decide pad" aria-labelledby="decide">
+    <div class="wrap">
+      <h2 id="decide">AI or a traditional shoot?</h2>
+      <p class="lede">A quick way to decide. Many of our projects end up being a mix of both.</p>
+      <div class="cards">
+        <div class="card">
+          <span class="tag ai">AI video</span>
+          <h3>Choose AI when</h3>
+          <ul>
+            <li>The visuals are hard or costly to film: other places, other eras, the impossible</li>
+            <li>You need b-roll, concept visuals or mood pieces</li>
+            <li>Speed and budget matter more than exact detail</li>
+          </ul>
+        </div>
+        <div class="card">
+          <span class="tag shoot">Traditional shoot</span>
+          <h3>Shoot when</h3>
+          <ul>
+            <li>Real people, real places or a real product are the point</li>
+            <li>Every detail and every frame has to be exact</li>
+            <li>You need clear rights for broadcast or a regulated industry</li>
+          </ul>
+        </div>
+        <div class="card">
+          <span class="tag mix">Both</span>
+          <h3>Mix them when</h3>
+          <ul>
+            <li>Filmed people and product, with generated scenes around them</li>
+            <li>A shoot day covers the essentials and AI fills the gaps</li>
+            <li>You want more versions and cut-downs than one shoot provides</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<div class="cta pad">
+  <div class="wrap">
+    <div>
+      <h2>Not sure which fits?</h2>
+      <p>Tell us what you need made. We will say plainly whether AI, a shoot or a mix is the better buy.</p>
+    </div>
+    <div class="actions">
+      <a class="btn btn-accent" href="index.html#contact">Start a project</a>
+      <a class="btn btn-back" href="index.html#ai-video"><span aria-hidden="true">←</span> Back to main page</a>
+    </div>
+  </div>
+</div>
+
+<footer class="pad">
+  <div class="wrap">© 2026 Bates Digital</div>
+</footer>
+
+</body>
+</html>

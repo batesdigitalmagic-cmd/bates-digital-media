@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Pricing – Bates Digital</title>
+<meta name="description" content="Starting prices for video, AI video, graphic design, web and publication design, and a calculator to estimate your project.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Courier+Prime:wght@400;700&family=Hanken+Grotesk:wght@500;700;800&display=swap" rel="stylesheet">
+<style>
+  :root { --navy: #0F1A3A; --ink: #0E1530; --muted: #3F4966; --soft: #B7C0DA; --bg: #F2F4F7; --panel: #E4E8EF; --line: #C3CAD9; --accent: #00E676; --teal: #35C6D8; --red: #C8102E; }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--bg); color: var(--ink); font-family: 'Courier Prime', 'Courier New', Courier, monospace; font-size: 17px; line-height: 1.55; }
+  a { color: inherit; }
+  h1, h2, h3, h4, .brand, .total { font-family: 'Hanken Grotesk', 'Segoe UI', Helvetica, sans-serif; }
+  a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible { outline: 3px solid var(--teal); outline-offset: 3px; }
+  [hidden] { display: none !important; }
+  .wrap { max-width: 1240px; margin: 0 auto; }
+  .pad { padding-left: clamp(20px, 5vw, 72px); padding-right: clamp(20px, 5vw, 72px); }
+
+  .top { background: var(--navy); color: #FFFFFF; }
+  .top header { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 16px; padding: 24px 0; }
+  .brand { display: flex; align-items: center; gap: 12px; min-height: 44px; font-weight: 800; font-size: 25px; line-height: 1; letter-spacing: -0.02em; text-decoration: none; }
+  .brand::before { content: ""; width: 16px; height: 16px; background: var(--accent); }
+  .btn { display: inline-flex; align-items: center; justify-content: center; gap: 8px; min-height: 48px; padding: 0 22px; border-radius: 4px; font: inherit; font-weight: 700; text-decoration: none; cursor: pointer; border: 0; }
+  .btn:hover { filter: brightness(0.93); }
+  .btn-back { border: 1.5px solid #FFFFFF; color: #FFFFFF; background: transparent; }
+  .btn-back:hover { background: #FFFFFF; color: var(--navy); filter: none; }
+  .btn-accent { background: var(--accent); color: var(--ink); }
+  .btn-line { border: 1.5px solid var(--navy); background: transparent; color: var(--navy); min-height: 44px; font-size: 15px; padding: 0 16px; }
+  .btn-line:hover { background: var(--navy); color: #FFFFFF; filter: none; }
+
+  .intro { padding: clamp(24px, 4vw, 48px) 0 clamp(48px, 6vw, 80px); display: flex; flex-direction: column; gap: 18px; }
+  .eyebrow { font-size: 15px; color: var(--soft); }
+  h1 { margin: 0; font-weight: 800; font-size: clamp(36px, 5vw, 66px); line-height: 1.04; letter-spacing: -0.025em; }
+  .intro p { margin: 0; max-width: 60ch; font-size: clamp(18px, 1.6vw, 21px); color: #DCE2F2; }
+
+  .promo-banner { display: flex; flex-wrap: wrap; align-items: baseline; gap: 6px 16px; background: #FFFFFF; color: var(--red); border-left: 6px solid var(--red); padding: 14px 18px; border-radius: 4px; }
+  .promo-banner strong { font-size: 18px; letter-spacing: 0.02em; }
+  .promo-banner span { color: var(--ink); font-size: 15px; }
+
+  section { padding-top: clamp(48px, 7vw, 96px); }
+  h2 { margin: 0 0 12px; font-weight: 800; font-size: clamp(28px, 3.4vw, 44px); line-height: 1.1; letter-spacing: -0.02em; }
+  .lede { margin: 0 0 28px; max-width: 62ch; color: var(--muted); }
+
+  .from-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 270px), 1fr)); gap: 16px; }
+  .from-card { background: #FFFFFF; border-radius: 6px; padding: 22px; display: flex; flex-direction: column; gap: 10px; }
+  .from-card h3 { margin: 0; font-size: 21px; }
+  .from-card p { margin: 0; color: var(--muted); font-size: 15px; flex: 1; }
+  .from-price { display: flex; align-items: baseline; gap: 8px; }
+  .from-price span { color: var(--muted); font-size: 15px; }
+  .from-price strong { font-family: 'Hanken Grotesk', 'Segoe UI', Helvetica, sans-serif; font-size: 30px; font-weight: 800; }
+  .from-price strong.quote { font-size: 20px; }
+  .from-price strong.promo { color: var(--red); }
+  .from-price s { color: var(--muted); font-size: 16px; }
+  .from-card .btn { align-self: flex-start; }
+  .print-card .sizes { margin: 0; padding-left: 18px; color: var(--muted); font-size: 15px; flex: 1; }
+  .alts li span:first-child { font-size: 14px; }
+
+  .rates { display: flex; flex-wrap: wrap; gap: 24px 56px; align-items: flex-start; }
+  .rates > div { flex: 1 1 320px; min-width: 0; }
+  table { width: 100%; border-collapse: collapse; font-variant-numeric: tabular-nums; background: #FFFFFF; border-radius: 6px; overflow: hidden; }
+  th, td { text-align: left; padding: 12px 18px; border-bottom: 1px solid var(--panel); }
+  td:last-child, th:last-child { text-align: right; font-weight: 700; }
+  thead th { background: var(--navy); color: #FFFFFF; font-weight: 700; }
+  .rates p { margin: 0 0 12px; color: var(--muted); }
+
+  .calc { display: flex; flex-wrap: wrap; gap: 32px; align-items: flex-start; }
+  .calc form { flex: 1.4 1 480px; min-width: 0; background: #FFFFFF; border-radius: 6px; padding: clamp(20px, 3vw, 36px); }
+  .calc aside { flex: 1 1 340px; min-width: 0; background: var(--navy); color: #FFFFFF; border-radius: 6px; padding: clamp(20px, 3vw, 32px); position: sticky; top: 16px; }
+  fieldset { border: 0; margin: 0; padding: 0; }
+  legend, .step { font-family: 'Hanken Grotesk', 'Segoe UI', Helvetica, sans-serif; font-weight: 700; font-size: 20px; margin: 0 0 14px; padding: 0; }
+  .step { margin-top: 28px; }
+  .cats { display: flex; flex-wrap: wrap; gap: 10px; }
+  .cat { position: relative; display: inline-flex; align-items: center; min-height: 48px; padding: 0 16px; border: 1.5px solid var(--line); border-radius: 4px; cursor: pointer; font-weight: 700; font-size: 15px; }
+  .cat input { position: absolute; opacity: 0; inset: 0; margin: 0; cursor: pointer; }
+  .cat:has(input:checked) { background: var(--navy); color: #FFFFFF; border-color: var(--navy); }
+  .cat:has(input:focus-visible) { outline: 3px solid var(--teal); outline-offset: 3px; }
+  .fgrid { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 240px), 1fr)); gap: 18px 20px; }
+  .field { display: flex; flex-direction: column; gap: 6px; min-width: 0; }
+  .field > label { font-size: 15px; font-weight: 700; }
+  .field input[type=number], .field select { width: 100%; height: 48px; padding: 0 12px; border: 1.5px solid #5B6788; border-radius: 4px; font: inherit; font-size: 17px; color: var(--ink); background: #FFFFFF; }
+  .field [aria-invalid="true"] { border-color: var(--red); }
+  .check { display: flex; align-items: center; gap: 10px; min-height: 48px; font-size: 15px; font-weight: 700; cursor: pointer; }
+  .check input { width: 22px; height: 22px; accent-color: var(--navy); flex: none; }
+  .help { margin: 0; font-size: 14px; color: var(--muted); }
+  .fgroup { margin-top: 24px; padding-top: 18px; border-top: 1px solid var(--line); }
+  .fgroup h4 { margin: 0 0 12px; font-size: 17px; }
+  .fgroup:first-of-type { margin-top: 0; padding-top: 0; border-top: 0; }
+  .err { margin: 0; font-size: 14px; color: var(--red); font-weight: 700; }
+  .err:empty { display: none; }
+
+  .total-head { display: flex; justify-content: space-between; gap: 12px; font-size: 15px; color: var(--soft); }
+  .total { font-size: clamp(40px, 5vw, 56px); font-weight: 800; line-height: 1.1; margin: 4px 0 8px; font-variant-numeric: tabular-nums; }
+  .total.quote { font-size: 32px; }
+  .total.promo { color: #FF6B7D; }
+  .promo-label { color: #FF6B7D; font-weight: 700; font-size: 14px; letter-spacing: 0.03em; margin-top: 8px; }
+  .regular { color: var(--soft); font-size: 15px; margin-bottom: 8px; }
+  aside h4 { margin: 22px 0 8px; font-size: 16px; }
+  .lines { list-style: none; margin: 0; padding: 0; font-size: 15px; }
+  .lines li { display: flex; justify-content: space-between; gap: 16px; padding: 8px 0; border-top: 1px solid rgba(255,255,255,0.14); }
+  .lines li span:last-child, .lines li strong { text-align: right; color: #DCE2F2; }
+  .quote-items li span:last-child { color: var(--soft); font-size: 14px; }
+  .note { margin: 8px 0 0; font-size: 14px; color: #DCE2F2; }
+  .fine { margin: 20px 0 0; font-size: 13px; color: var(--soft); }
+  .muted { color: var(--soft); }
+  aside .btn { width: 100%; margin-top: 20px; }
+
+  .cta { background: var(--navy); color: #FFFFFF; margin-top: clamp(56px, 7vw, 96px); padding-top: clamp(48px, 7vw, 96px); padding-bottom: clamp(48px, 7vw, 96px); }
+  .cta .wrap { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 24px; }
+  .cta h2 { margin: 0 0 8px; } .cta p { margin: 0; color: #DCE2F2; max-width: 52ch; }
+  footer { background: var(--navy); color: var(--soft); border-top: 1px solid rgba(255,255,255,0.14); padding-top: 28px; padding-bottom: 28px; font-size: 15px; }
+  .instant { display: flex; flex-wrap: wrap; gap: 20px; }
+  .pkg { flex: 1 1 340px; min-width: 0; background: #FFFFFF; border-radius: 6px; padding: clamp(20px, 3vw, 32px); }
+  .pkg h3 { margin: 0 0 8px; font-size: 22px; }
+  .pkg h4 { margin: 18px 0 6px; font-size: 16px; font-family: 'Hanken Grotesk', 'Segoe UI', Helvetica, sans-serif; }
+  .pkg ul { margin: 0; padding-left: 20px; color: var(--muted); font-size: 15px; }
+  .pkg p { color: var(--muted); font-size: 16px; }
+  .pkg-price { font-family: 'Hanken Grotesk', 'Segoe UI', Helvetica, sans-serif; font-weight: 800; font-size: 32px; margin: 4px 0 12px; }
+  .ticks { list-style: none; padding: 0 !important; }
+  .ticks li { padding: 6px 0 6px 26px; position: relative; color: var(--ink) !important; }
+  .ticks li::before { content: "✓"; position: absolute; left: 0; color: #0A8F4E; font-weight: 700; }
+  .pkg table { margin: 8px 0; }
+  .cols2 { display: flex; flex-wrap: wrap; gap: 0 24px; } .cols2 > div { flex: 1 1 220px; min-width: 0; }
+  .small { font-size: 14px !important; }
+  .promo-text { color: var(--red) !important; font-weight: 700; }
+  .gate-notice { margin: 16px 0; padding: 12px 14px; border-left: 4px solid var(--teal); background: var(--panel); color: var(--ink) !important; font-size: 15px; }
+  .terms-box { margin-top: 20px; background: #FFFFFF; border-radius: 6px; padding: clamp(20px, 3vw, 32px); border: 1px solid var(--line); }
+  .terms-box h3 { margin: 0 0 12px; font-size: 20px; }
+  .terms-box p { margin: 0 0 12px; font-size: 15px; }
+  .terms-gate { margin-top: 20px; padding-top: 16px; border-top: 1px solid rgba(255,255,255,0.18); }
+  .terms-gate .gate-notice { background: rgba(255,255,255,0.08); color: #FFFFFF !important; margin-top: 0; }
+  .gate-check { display: flex; gap: 12px; align-items: flex-start; font-size: 15px; cursor: pointer; }
+  .gate-check input { width: 22px; height: 22px; flex: none; margin-top: 2px; accent-color: var(--accent); }
+  .gate-link { font-size: 14px; margin: 10px 0 0; } .gate-link a { color: #FFFFFF; }
+  .gate-msg { font-size: 14px; color: #FFB4BE; margin: 8px 0 0; }
+  #quote-btn[aria-disabled="true"] { opacity: 0.45; cursor: not-allowed; }
+  .promo-inline { color: #FF6B7D; }
+  @media (max-width: 760px) { .calc aside { position: static; } }
+</style>
+<script src="pricing/pricing-config.js"></script>
+<script src="pricing/pricing-engine.js"></script>
+<script src="pricing/pricing-ui.js" defer></script>
+</head>
+<body>
+
+<div class="top pad">
+  <div class="wrap">
+    <header>
+      <a class="brand" href="index.html">Bates Digital</a>
+      <a class="btn btn-back" href="index.html"><span aria-hidden="true">←</span> Back to main page</a>
+    </header>
+    <div class="intro">
+      <div class="eyebrow">Pricing</div>
+      <h1>What it costs</h1>
+      <p>Starting prices for every service, and a calculator that turns your scope into an estimate. Anything we can't price reliably online is marked as a custom quote.</p>
+      <div id="promo-banner" class="promo-banner" role="note" hidden></div>
+    </div>
+  </div>
+</div>
+
+<main class="pad">
+  <div class="wrap">
+    <section aria-labelledby="from-h" style="padding-top: clamp(40px, 5vw, 64px)">
+      <h2 id="from-h">Starting prices</h2>
+      <p class="lede">The lowest price for the smallest standard project in each service. Your scope sets the final number.</p>
+      <div class="from-grid" id="from-grid"></div>
+    </section>
+
+    <section id="print" aria-labelledby="print-h">
+      <h2 id="print-h">Print products</h2>
+      <p class="lede">Printing is priced from current printer quotes for your exact size, stock, sides, finish and quantity. Where we don't have a confirmed quote yet, you'll see "Request quote".</p>
+      <div class="from-grid" id="print-grid"></div>
+    </section>
+
+    <section id="instant" aria-labelledby="instant-h">
+      <h2 id="instant-h">Instant Editing</h2>
+      <p class="lede">Insta-Video Edit: send your footage and music, and our automated editing workflow assembles your music video.</p>
+      <div class="instant">
+        <div class="pkg">
+          <h3>Instant music video</h3>
+          <div class="pkg-price" id="instant-price">Request a quote</div>
+          <ul class="ticks">
+            <li>One preset-based edit</li>
+            <li>Includes project setup</li>
+            <li>Shot selection, pacing, transitions, effects and color follow the preset workflow</li>
+          </ul>
+          <p class="gate-notice">One preset-based edit included. Custom creative revisions are available through optional Manual Polish.</p>
+          <a class="btn btn-line" href="?service=instant#calculator" data-pick-instant>Estimate Instant Editing</a>
+        </div>
+        <div class="pkg">
+          <h3>Manual Polish (optional)</h3>
+          <p>Extra manual editing time on top of your preset edit. It buys editing labor, not a longer video. Send one consolidated change list; we confirm the scope, time and price before we start.</p>
+          <table>
+            <caption style="position:absolute;left:-9999px">Manual Polish prices</caption>
+            <thead><tr><th scope="col">Editing time</th><th scope="col">Price</th></tr></thead>
+            <tbody id="polish-rates"></tbody>
+          </table>
+          <p class="small">Longer requests are priced in 30-minute steps. Work beyond the time you buy needs a separate approved quote.</p>
+          <p class="small promo-text" id="polish-promo" hidden></p>
+          <div class="cols2">
+            <div><h4>Manual Polish covers</h4><ul id="polish-includes"></ul></div>
+            <div><h4>Needs a custom editing quote</h4><ul id="polish-custom"></ul></div>
+          </div>
+          <h4>Fixed free, no Manual Polish needed</h4>
+          <ul id="tech-free"></ul>
+        </div>
+      </div>
+      <div class="terms-box" id="instant-terms">
+        <h3>Instant Editing Service Terms</h3>
+        <div id="instant-terms-text"></div>
+        <p class="small"><span id="instant-terms-version"></span> · <a href="instant-editing-terms.html">Open the terms on their own page</a></p>
+      </div>
+    </section>
+
+    <section aria-labelledby="ai-h">
+      <div class="rates">
+        <div>
+          <h2 id="ai-h">AI video rates</h2>
+          <p>Prices for finished AI video, including generation, editing and finishing. Longer projects cost less per minute.</p>
+          <p id="ai-extra"></p>
+        </div>
+        <div>
+          <table>
+            <caption class="sr-only" style="position:absolute;left:-9999px">AI video prices by finished length</caption>
+            <thead><tr><th scope="col">Finished length</th><th scope="col">Price</th></tr></thead>
+            <tbody id="ai-rates"></tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <section id="calculator" aria-labelledby="calc-h">
+      <h2 id="calc-h">Estimate your project</h2>
+      <p class="lede">Choose a service and set the scope. The estimate updates as you go. When it looks right, send it to us and we'll confirm the price.</p>
+      <div class="calc">
+        <form id="calc-form" novalidate>
+          <fieldset>
+            <legend>1. Choose a service</legend>
+            <div class="cats" id="cat-options"></div>
+          </fieldset>
+          <div id="calc-fields"></div>
+        </form>
+        <aside aria-labelledby="sum-h">
+          <h3 id="sum-h" style="position:absolute;left:-9999px">Your estimate</h3>
+          <div id="summary-body" aria-live="polite"></div>
+          <div id="terms-gate" class="terms-gate" hidden></div>
+          <a class="btn btn-accent" id="quote-btn" href="index.html#contact">Request a Quote</a>
+        </aside>
+      </div>
+      <noscript><p>The calculator needs JavaScript. <a href="index.html#contact">Tell us about your project</a> and we'll send a quote.</p></noscript>
+    </section>
+  </div>
+</main>
+
+<div class="cta pad">
+  <div class="wrap">
+    <div>
+      <h2>Not sure what you need?</h2>
+      <p>Describe the project in a few lines and we'll suggest the scope and price.</p>
+    </div>
+    <div style="display: flex; flex-wrap: wrap; gap: 14px">
+      <a class="btn btn-accent" href="index.html#contact">Start a project</a>
+      <a class="btn btn-back" href="index.html"><span aria-hidden="true">←</span> Back to main page</a>
+    </div>
+  </div>
+</div>
+
+<footer class="pad">
+  <div class="wrap">© 2026 Bates Digital</div>
+</footer>
+
+</body>
+</html>

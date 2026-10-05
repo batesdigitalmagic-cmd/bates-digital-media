@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Project 1 – Bates Digital</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Courier+Prime:wght@400;700&family=Hanken+Grotesk:wght@500;700;800&display=swap" rel="stylesheet">
+<style>
+  :root { --navy: #0F1A3A; --ink: #0E1530; --muted: #3F4966; --line: #8E99B5; --panel: #E4E8EF; --bg: #F2F4F7; --accent: #00E676; --teal: #35C6D8; }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--bg); color: var(--ink); font-family: 'Courier Prime', 'Courier New', Courier, monospace; font-size: 17px; line-height: 1.55; }
+  a { color: inherit; }
+  img { max-width: 100%; height: auto; }
+  h1, h2, h3, .brand { font-family: 'Hanken Grotesk', 'Segoe UI', Helvetica, sans-serif; }
+  a:focus-visible { outline: 3px solid var(--teal); outline-offset: 3px; }
+  .wrap { max-width: 1240px; margin: 0 auto; }
+  .pad { padding-left: clamp(20px, 5vw, 72px); padding-right: clamp(20px, 5vw, 72px); }
+
+  .top { background: var(--navy); color: #FFFFFF; }
+  .top header { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 16px; padding: 24px 0; }
+  .brand { display: flex; align-items: center; gap: 12px; min-height: 44px; font-weight: 800; font-size: 25px; line-height: 1; letter-spacing: -0.02em; text-decoration: none; }
+  .brand::before { content: ""; width: 16px; height: 16px; background: var(--accent); }
+  .btn { display: inline-flex; align-items: center; justify-content: center; gap: 8px; min-height: 48px; padding: 0 22px; border-radius: 4px; font-weight: 700; text-decoration: none; }
+  .btn:hover { filter: brightness(0.93); }
+  .btn-back { border: 1.5px solid #FFFFFF; color: #FFFFFF; }
+  .btn-back:hover { background: #FFFFFF; color: var(--navy); filter: none; }
+  .btn-accent { background: var(--accent); color: var(--ink); }
+
+  .intro { padding: clamp(24px, 4vw, 48px) 0 clamp(48px, 6vw, 88px); display: flex; flex-direction: column; gap: 20px; }
+  .eyebrow { font-size: 15px; font-weight: 500; color: #B7C0DA; }
+  h1 { margin: 0; font-weight: 800; font-size: clamp(36px, 5vw, 66px); line-height: 1.04; letter-spacing: -0.025em; }
+  .facts { display: flex; flex-wrap: wrap; gap: 12px 40px; margin: 8px 0 0; padding: 0; list-style: none; }
+  .facts li { display: flex; flex-direction: column; }
+  .facts span { font-size: 14px; color: #B7C0DA; }
+  .facts strong { font-size: 18px; }
+
+  .ph { display: flex; align-items: center; justify-content: center; text-align: center; padding: 16px; border: 2px dashed var(--line); background: var(--panel); color: var(--muted); font-size: 16px; }
+  .hero-media { aspect-ratio: 16 / 9; margin-top: clamp(-40px, -3vw, -24px); }
+
+  section { padding-top: clamp(48px, 7vw, 96px); }
+  h2 { margin: 0 0 16px; font-weight: 800; font-size: clamp(28px, 3.4vw, 44px); line-height: 1.1; letter-spacing: -0.02em; }
+  .lede { margin: 0 0 28px; max-width: 60ch; color: var(--muted); }
+  .cols { display: flex; flex-wrap: wrap; gap: 32px 48px; }
+  .cols > div { flex: 1 1 300px; min-width: 0; border-top: 2px solid var(--navy); padding-top: 16px; }
+  h3 { margin: 0 0 8px; font-size: 20px; font-weight: 700; }
+  .cols p { margin: 0; color: var(--muted); }
+
+  .gallery { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 320px), 1fr)); gap: 16px; }
+  .gallery .ph { aspect-ratio: 4 / 3; }
+  .gallery .wide { grid-column: 1 / -1; aspect-ratio: 21 / 9; }
+
+  table { width: 100%; border-collapse: collapse; font-variant-numeric: tabular-nums; }
+  th, td { text-align: left; padding: 14px 0; border-bottom: 1px solid #C9D0DC; vertical-align: top; }
+  td:last-child, th:last-child { text-align: right; white-space: nowrap; padding-left: 16px; }
+  tfoot td { font-weight: 700; border-bottom: 0; border-top: 2px solid var(--navy); }
+
+  .pager { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 16px; padding: clamp(48px, 7vw, 96px) 0; }
+  .pager a { display: flex; flex-direction: column; gap: 4px; min-height: 44px; text-decoration: none; font-weight: 700; font-size: 18px; }
+  .pager a span { font-size: 14px; font-weight: 400; color: var(--muted); }
+  .pager a:hover { text-decoration: underline; text-underline-offset: 6px; }
+  .pager .next { text-align: right; margin-left: auto; }
+
+  .cta { background: var(--navy); color: #FFFFFF; padding-top: clamp(48px, 7vw, 96px); padding-bottom: clamp(48px, 7vw, 96px); }
+  .cta .wrap { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 24px; }
+  .cta h2 { margin: 0; }
+  .cta .actions { display: flex; flex-wrap: wrap; gap: 14px; }
+  footer { background: var(--navy); color: #B7C0DA; border-top: 1px solid rgba(255,255,255,0.14); padding-top: 28px; padding-bottom: 28px; font-size: 15px; }
+</style>
+</head>
+<body>
+
+<div class="top pad">
+  <div class="wrap">
+    <header>
+      <a class="brand" href="index.html">Bates Digital</a>
+      <a class="btn btn-back" href="index.html#work"><span aria-hidden="true">←</span> Back to main page</a>
+    </header>
+    <div class="intro">
+      <div class="eyebrow">Project 1 of 3</div>
+      <h1>[Client name]</h1>
+      <ul class="facts">
+        <li><span>Project type</span><strong>[Project type]</strong></li>
+        <li><span>Goal</span><strong>[What it was for]</strong></li>
+        <li><span>Budget range</span><strong>[Budget range]</strong></li>
+        <li><span>Turnaround</span><strong>[Weeks]</strong></li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<main class="pad">
+  <div class="wrap">
+    <div class="ph hero-media">[Finished video or hero still]</div>
+
+    <section aria-labelledby="brief">
+      <h2 id="brief">The brief</h2>
+      <div class="cols">
+        <div><h3>What they needed</h3><p>[The problem the client came with, in one or two sentences.]</p></div>
+        <div><h3>What we made</h3><p>[The deliverables: lengths, cut-downs, formats and platforms.]</p></div>
+        <div><h3>How it went</h3><p>[The result: views, sign-ups, sales or what the client said.]</p></div>
+      </div>
+    </section>
+
+    <section aria-labelledby="bts">
+      <h2 id="bts">Behind the scenes</h2>
+      <p class="lede">How it was made: the shoot, the set, the edit and the graphics.</p>
+      <div class="gallery">
+        <div class="ph wide">[Behind-the-scenes video or wide set photo]</div>
+        <div class="ph">[Set photo]</div>
+        <div class="ph">[Crew or lighting setup]</div>
+        <div class="ph">[Edit timeline or color grade]</div>
+        <div class="ph">[Storyboard or design frame]</div>
+        <div class="ph">[Graphics or motion frame]</div>
+        <div class="ph">[Before and after]</div>
+      </div>
+    </section>
+
+    <section aria-labelledby="cost">
+      <h2 id="cost">What it cost</h2>
+      <p class="lede">Where the budget went, so you can compare it with your own project.</p>
+      <table>
+        <thead><tr><th scope="col">Item</th><th scope="col">Cost</th></tr></thead>
+        <tbody>
+          <tr><td>[Pre-production: script and planning]</td><td>[$]</td></tr>
+          <tr><td>[Shoot days, crew and gear]</td><td>[$]</td></tr>
+          <tr><td>[Editing, graphics and sound]</td><td>[$]</td></tr>
+          <tr><td>[Extra cut-downs]</td><td>[$]</td></tr>
+        </tbody>
+        <tfoot><tr><td>Total</td><td>[$]</td></tr></tfoot>
+      </table>
+    </section>
+
+    <nav class="pager" aria-label="More projects">
+      <a class="prev" href="project-3.html"><span>← Previous project</span>[Client name]</a>
+      <a class="next" href="project-2.html"><span>Next project →</span>[Client name]</a>
+    </nav>
+  </div>
+</main>
+
+<div class="cta pad">
+  <div class="wrap">
+    <h2>Want something like this?</h2>
+    <div class="actions">
+      <a class="btn btn-accent" href="index.html#contact">Start a project</a>
+      <a class="btn btn-back" href="index.html#work"><span aria-hidden="true">←</span> Back to main page</a>
+    </div>
+  </div>
+</div>
+
+<footer class="pad">
+  <div class="wrap">© 2026 Bates Digital</div>
+</footer>
+
+</body>
+</html>
