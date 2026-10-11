@@ -46,6 +46,29 @@
   .project:last-child { border-bottom: 0; }
   .project .media { flex: 1.3 1 440px; min-width: 0; display: flex; flex-direction: column; gap: 12px; }
   .project .main { aspect-ratio: 16 / 9; }
+  .embed { position: relative; overflow: hidden; background: var(--navy); }
+  .embed iframe, .embed video { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
+  .client-type { margin: -4px 0 0; font-size: 15px; color: var(--muted); }
+  .script-thumb { position: relative; overflow: hidden; padding: 0; border: 1px solid #C9D0DC; background: #D5DBE5; cursor: zoom-in; font: inherit; }
+  .script-thumb:hover { background: #C9D0DC; }
+  .script-thumb:focus-visible { outline: 3px solid var(--teal); outline-offset: 3px; }
+  .paper-wrap { position: absolute; top: 10%; left: 50%; width: 600px; margin-left: -300px; transform-origin: top center; transition: transform 0.2s; pointer-events: none; }
+  .paper-wrap .script-page { box-shadow: 0 6px 24px rgba(14,21,48,0.25); }
+  .thumb-tag { position: absolute; left: 0; right: 0; bottom: 0; padding: 4px 6px; background: var(--navy); color: #FFFFFF; font-size: 12px; text-align: center; }
+  .script-page { text-align: left; background: #FFFFFF; color: #111111; padding: 40px 36px 48px; font-family: Helvetica, Arial, sans-serif; font-size: 15px; line-height: 1.35; }
+  .script-page header { margin-bottom: 18px; font-variant: small-caps; font-weight: 700; font-size: 18px; line-height: 1.3; }
+  .script-page table { width: 100%; border-collapse: collapse; table-layout: fixed; }
+  .script-page th { background: #E6E6E6; font-variant: small-caps; padding: 6px; border: 1.5px solid #111111; }
+  .script-page td { vertical-align: top; padding: 10px; border-left: 1.5px solid #111111; border-right: 1.5px solid #111111; }
+  .script-page tr:last-child td { border-bottom: 1.5px solid #111111; padding-bottom: 28px; }
+  .script-page td + td { font-weight: 700; }
+  .script-page td p { margin: 0 0 14px; } .script-page td p:last-child { margin: 0; }
+  .script-page .music { font-style: italic; font-weight: 400; margin: 0; }
+  dialog.script-view { width: min(760px, calc(100vw - 32px)); max-height: calc(100vh - 32px); padding: 0; border: 0; background: transparent; }
+  dialog.script-view::backdrop { background: rgba(14,21,48,0.8); }
+  .script-view .bar { position: sticky; top: 0; display: flex; justify-content: space-between; align-items: center; gap: 12px; padding: 10px 14px; background: var(--navy); color: #FFFFFF; font-size: 15px; }
+  .script-view .bar button { min-height: 44px; padding: 0 16px; border: 1.5px solid #FFFFFF; border-radius: 4px; background: transparent; color: #FFFFFF; font: inherit; font-weight: 700; cursor: pointer; }
+  @media (max-width: 560px) { .script-page { padding: 24px 16px 32px; font-size: 13px; } .script-page td { padding: 8px 6px; } }
   .bts { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; }
   .bts .ph { aspect-ratio: 4 / 3; font-size: 13px; padding: 8px; }
   .project .info { flex: 1 1 320px; min-width: 0; display: flex; flex-direction: column; gap: 18px; }
@@ -95,6 +118,7 @@
       <p>Ads and promos for a product, a service or an event. Each project shows what it was for, what it cost and how it was made.</p>
       <p class="price-line">Pricing: from <strong data-bd-work="commercial">$879</strong>. <a href="pricing.html?service=videography#calculator">Estimate your project</a></p>
       <ul class="cats" aria-label="Video work categories">
+        <li><a href="work-web-series.html">Web series</a></li>
         <li><a href="work-commercial.html" aria-current="page">Commercial</a></li>
         <li><a href="work-educational.html">Educational</a></li>
         <li><a href="work-corporate.html">Corporate</a></li>
@@ -106,32 +130,37 @@
 
 <main class="pad">
   <div class="wrap">
-      <article class="project" aria-label="Project 1">
+      <article class="project" aria-label="Covington Hwy Locksmith">
         <div class="media">
-          <div class="ph main">[Finished video or still]</div>
+          <div class="main embed"><iframe src="https://player.vimeo.com/video/1128945183?h=92a34ff378&amp;badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share" referrerpolicy="strict-origin-when-cross-origin" loading="lazy" title="Covington Highway Locksmith LLC commercial"></iframe></div>
           <div class="label">Behind the scenes</div>
           <div class="bts">
-            <div class="ph">[Set or process photo]</div>
+            <button type="button" class="ph script-thumb" aria-haspopup="dialog" aria-controls="script-covington" aria-label="Open the Covington Hwy Locksmith script">
+              <span class="paper-wrap" aria-hidden="true"></span>
+              <span class="thumb-tag">The script</span>
+            </button>
             <div class="ph">[Draft or work in progress]</div>
             <div class="ph">[Detail or before and after]</div>
           </div>
         </div>
         <div class="info">
-          <h2>[Client name]</h2>
+          <h2>Covington Hwy Locksmith</h2>
+          <p class="client-type">Local locksmith · Commercial</p>
           <dl class="facts">
-            <dt>Goal</dt><dd>[What it was for]</dd>
-            <dt>Delivered</dt><dd>[Lengths, formats or files]</dd>
-            <dt>Budget</dt><dd>[Budget range]</dd>
-            <dt>Turnaround</dt><dd>[Weeks]</dd>
+            <dt>Goal</dt><dd>Drive customers away from the dealership for car keys, remotes and programming</dd>
+            <dt>Delivered</dt><dd>One 30-second spot, 16:9 HD, for cable TV and the web</dd>
+            <dt>Budget</dt><dd>$879–$1,500</dd>
+            <dt>Turnaround</dt><dd>2 weeks</dd>
+            <dt>Came through</dt><dd>Referral from a sales manager at Comcast Advertising (Effectv)</dd>
           </dl>
-          <div><h3>The brief</h3><p>[The problem the client came with, in one or two sentences.]</p></div>
-          <div><h3>How it was made</h3><p>[What happened behind the scenes: the shoot, the drafts, the tools and the decisions.]</p></div>
-          <div><h3>How it went</h3><p>[The result: views, sign-ups, sales or what the client said.]</p></div>
+          <div><h3>The brief</h3><p>Drivers assume a lost or broken car key means a trip to the dealer. The shop needed a short, friendly spot that tells local drivers it makes and programs chip keys, flip keys, fobs and remotes for less, and that its mobile van can come to them.</p></div>
+          <div><h3>How it was made</h3><p>I wrote a two-column script that paired each line with a shot, then filmed everything in one day on location: exterior wides of the store, the owner at the counter, close-ups of the key-cutting equipment and remotes, and the service van pulling into a driveway. The owner delivers the key lines on camera to build trust, a voiceover handles hours and mobile service, and the spot closes on a light joke before returning to the storefront.</p></div>
+          <div><h3>How it went</h3><p>The spot aired on local cable through Comcast Advertising (Effectv), and the owner made it the opening video on the shop's website, so both TV viewers and site visitors hear the dealer alternative, the hours and the mobile service in 30 seconds.</p></div>
         </div>
       </article>
-      <article class="project" aria-label="Project 2">
+      <article class="project" aria-label="A1 Grillz">
         <div class="media">
-          <div class="ph main">[Finished video or still]</div>
+          <div class="main embed"><iframe src="https://www.youtube-nocookie.com/embed/8qH_Z6IqoKQ" title="A1 Grillz 30-second commercial" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen loading="lazy"></iframe></div>
           <div class="label">Behind the scenes</div>
           <div class="bts">
             <div class="ph">[Set or process photo]</div>
@@ -140,16 +169,17 @@
           </div>
         </div>
         <div class="info">
-          <h2>[Client name]</h2>
+          <h2>A1 Grillz</h2>
+          <p class="client-type">Custom grillz · Commercial</p>
           <dl class="facts">
-            <dt>Goal</dt><dd>[What it was for]</dd>
-            <dt>Delivered</dt><dd>[Lengths, formats or files]</dd>
+            <dt>Goal</dt><dd>[What the ad promoted, e.g. a service or offer]</dd>
+            <dt>Delivered</dt><dd>One 30-second spot, 16:9 HD</dd>
             <dt>Budget</dt><dd>[Budget range]</dd>
             <dt>Turnaround</dt><dd>[Weeks]</dd>
           </dl>
-          <div><h3>The brief</h3><p>[The problem the client came with, in one or two sentences.]</p></div>
-          <div><h3>How it was made</h3><p>[What happened behind the scenes: the shoot, the drafts, the tools and the decisions.]</p></div>
-          <div><h3>How it went</h3><p>[The result: views, sign-ups, sales or what the client said.]</p></div>
+          <div><h3>The brief</h3><p>[What A1 Grillz needed from the ad and who it had to reach, in one or two sentences.]</p></div>
+          <div><h3>How it was made</h3><p>Cut from footage of the <a href="work-web-series.html">A1 Grillz web series</a> shoot, so one production gave the client both a series and a commercial. [Add details: the drafts, the tools and the decisions.]</p></div>
+          <div><h3>How it went</h3><p>[The result: where it ran, views, new customers or what the client said.]</p></div>
         </div>
       </article>
       <article class="project" aria-label="Project 3">
@@ -183,6 +213,7 @@
     <div class="col">
       <h2>Video work</h2>
       <ul>
+          <li><a href="work-web-series.html">Web series<span aria-hidden="true">→</span></a></li>
           <li><a href="work-commercial.html" aria-current="page">Commercial<span aria-hidden="true">→</span></a></li>
           <li><a href="work-educational.html">Educational<span aria-hidden="true">→</span></a></li>
           <li><a href="work-corporate.html">Corporate<span aria-hidden="true">→</span></a></li>
@@ -222,5 +253,39 @@
   <div class="wrap">© 2026 Bates Digital</div>
 </footer>
 
+<dialog class="script-view" id="script-covington" aria-label="Covington Hwy Locksmith script">
+  <div class="bar"><span>Script · Covington Hwy Locksmith and Remotes</span><button type="button" data-close>Close</button></div>
+  <div class="script-page">
+    <header>Covington HWY Locksmith and Remotes<br>Bates Digital Media</header>
+    <table>
+      <thead><tr><th scope="col">Video</th><th scope="col">Audio</th></tr></thead>
+      <tbody>
+          <tr><td>Open with (exterior) of the store [WideShot]</td><td><p class="music">[MUSIC PLAYING]</p><p>VO: If your thinking about going to the dealer to buy your keys…DONT.</p></td></tr>
+          <tr><td>Talent framed at service operating counter (interior) [MS]</td><td><p>TALENT: Come to Covington Hwy Locksmith and Remotes where you WILL save</p></td></tr>
+          <tr><td>Pan over key making equipment and products [MS]</td><td><p>TALENT: Our experienced technicians can produce chip keys, flip key, key faubs, and car remotes……and we also do repairs</p><p>VO1: Were here Monday thru Saturday from 10 to 6</p></td></tr>
+          <tr><td>[WS] Commercial Van entering residential driveway.</td><td><p>VO1: and If your not able to come by our store location…we can come to you.</p></td></tr>
+          <tr><td>[MS] Talent picking up the phone behind the counter (B-Roll)</td><td><p>VO2: We have a fully capable mobile service vehicle to produce keys on the go.</p></td></tr>
+          <tr><td>Talent framed at service operating counter (interior) [MS]</td><td><p>TALENT: If you purchased your product somewhere else, we can program it</p></td></tr>
+          <tr><td><p>[MS] Car remotes on the counter</p><p>[WS] End with exterior of the building</p></td><td><p>TALENT: If you don’t buy your keys from Covington HWY Locksmith and Remotes …”wellll we’ll both lose money”</p></td></tr>
+      </tbody>
+    </table>
+  </div>
+</dialog>
+<script>
+  // Script mockup: a scaled copy of the full script page in the thumbnail; click opens the full page.
+  (function () {
+    var dlg = document.getElementById('script-covington');
+    var thumb = document.querySelector('[aria-controls="script-covington"]');
+    if (!dlg || !thumb) return;
+    var wrap = thumb.querySelector('.paper-wrap');
+    wrap.appendChild(dlg.querySelector('.script-page').cloneNode(true));
+    function fit() { wrap.style.transform = 'scale(' + (thumb.clientWidth * 0.82 / 600) + ')'; }
+    fit();
+    if (window.ResizeObserver) new ResizeObserver(fit).observe(thumb); else window.addEventListener('resize', fit);
+    thumb.addEventListener('click', function () { dlg.showModal(); });
+    dlg.querySelector('[data-close]').addEventListener('click', function () { dlg.close(); });
+    dlg.addEventListener('click', function (e) { if (e.target === dlg) dlg.close(); });
+  })();
+</script>
 </body>
 </html>

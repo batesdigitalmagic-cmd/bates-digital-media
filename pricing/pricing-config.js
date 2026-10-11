@@ -698,6 +698,7 @@
     // Work pages -> calculator category and the smallest standard selection shown as "From $X".
     // null = no published price on that page.
     workPages: {
+      'web-series':      { category: 'videography' },
       'commercial':      { category: 'videography' },
       'corporate':       { category: 'videography' },
       'educational':     { category: 'editing' },
